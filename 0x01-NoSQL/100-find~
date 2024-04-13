@@ -1,2 +1,0 @@
-// find all documents with name fields starting with Holberton
-db.school.find({name: {regex: /^Holberton/}})
