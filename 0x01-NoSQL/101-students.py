@@ -2,6 +2,7 @@
 '''return a list of students from a collection sorted based
 on calculated averages
 '''
+import pymongo
 
 
 def top_students(mongo_collection):
@@ -19,9 +20,5 @@ def top_students(mongo_collection):
         mongo_collection.update_one({'name': student.get('name')},
                                     {'$set': {'averageScore': average_score}})
 
-    updated_students = mongo_collection.find()
-    print('\n\n////////')
-    print([student for student in updated_students])
-    print('\n\n////////')
-    return sorted(updated_students,
-                  key=lambda student: student.get('averageScore'))
+    updated_students = mongo_collection.find(sort=[('averageScore', pymongo.DESCENDING)])
+    return updated_students
