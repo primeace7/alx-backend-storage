@@ -8,4 +8,4 @@ def update_topics(mongo_collection, name, topics):
     '''update a document with name 'name' in
     mongo_collection by appending topics list
     '''
-    mongo_collection.update_one({'name': name}, {'$set': {'topics': topics}})
+    mongo_collection.update_many({'name': name}, {'$set': {'topics': topics}})
