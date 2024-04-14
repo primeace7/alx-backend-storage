@@ -3,6 +3,7 @@
 
 import requests
 import redis
+r = redis.Redis()
 
 
 def get_page(url: str) -> str:
@@ -10,7 +11,6 @@ def get_page(url: str) -> str:
     and track number of requests to the url
     '''
 
-    r = redis.Redis()
     response = requests.get(url).text
     key = f'count:{url}'
     r.incr(key, 1)
