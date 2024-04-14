@@ -8,4 +8,3 @@ client = MongoClient()
 db = client.logs
 
 docs_count = db.nginx.count_documents({})
-

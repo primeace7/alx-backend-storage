@@ -3,6 +3,7 @@
 on calculated averages
 '''
 
+
 def top_students(mongo_collection):
     '''sort a collection of student students based on
     their calculated and inserted scores
@@ -15,10 +16,12 @@ def top_students(mongo_collection):
         for topic in student.get('topics'):
             total_score += topic.get('score')
         average_score = total_score / total_topics
-        mongo_collection.update_one({'name': student.get('name')}, {'$set': {'averageScore': average_score}})
+        mongo_collection.update_one({'name': student.get('name')},
+                                    {'$set': {'averageScore': average_score}})
 
     updated_students = mongo_collection.find()
     print('\n\n////////')
     print([student for student in updated_students])
     print('\n\n////////')
-    return sorted(updated_students, key = lambda student: student.get('averageScore'))
+    return sorted(updated_students,
+                  key=lambda student: student.get('averageScore'))
